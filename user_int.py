@@ -1,3 +1,4 @@
+from subprocess import call
 import os
 
 print("Hello, How are you? Let us make Cloud Computing great again! ")
@@ -37,7 +38,23 @@ print(fobj1.read())
 fobj1.close()
 
 str1 = ' '.join(args)
-print(str1)
+#print(str1)
+#chk_prog = "Error:"
+command_call = 'python ./' + func_name + ' ' + str1
+#print(command_call)
+chk_prog2 = os.system(command_call + ' | cat > temp_file ')
 
-chk_prog = os.system('python ./' + func_name + ' ' +  str1)
+#print(chk_prog)
+if os.stat("temp_file").st_size == 0:
+    chk_prog2 = 1
+else:
+    fobj2 = open('temp_file','r')
+    chk_prog = fobj2.read()
+    fobj2.close
 
+#print("CheckProgram " + chk_prog)
+print(chk_prog2)
+if chk_prog2:
+    print("Syntax Error")
+else:
+    print("The Program has compiled successfully")
