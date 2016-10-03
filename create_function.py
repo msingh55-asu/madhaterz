@@ -25,6 +25,7 @@ def put_request_db(get_request_api_arg, db_ip_ddress_arg, set_status_arg)
 	else:
 		print('PUT /request/{} {}'.format(set_status_arg, resp.status_code))
 		return 0
+
 ######################################################
 #requesting API for request parameters from DB Service
 ######################################################
@@ -39,6 +40,9 @@ def get_request_db(get_request_api_arg, db_ip_ddress_arg)
 	for todo_item in resp.json():
 		print('{}\n{} '.format(todo_item['id'], todo_item['body']))
 
+##########################################################
+#requesting API to save tehfunction and its contents to DB
+##########################################################
 def post_function_create_db
 	#generating API for getting Function Created
 	get_request_api = 'http://' + db_ip_ddress_arg + '/function/'
