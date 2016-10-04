@@ -7,7 +7,7 @@ import json
 ######################################################
 #requesting API for request object from DB Service
 ######################################################
-def get_request_db(get_request_api_arg, db_ip_ddress_arg)
+def get_request_db(request_id_arg, db_ip_ddress_arg)
         #generating GET API for getting Request from DB Service
         get_request_api = 'http://' + db_ip_ddress_arg + '/request/' + request_id_arg
         resp = requests.get(get_request_api)
@@ -28,7 +28,7 @@ def get_request_db(get_request_api_arg, db_ip_ddress_arg)
 ##########################################################
 #requesting API for send create user request to DB Service
 ##########################################################
-def post_user_db(get_request_api_arg, db_ip_ddress_arg, **parameter_arg)
+def post_user_db(request_id_arg, db_ip_ddress_arg, **parameter_arg)
 	get_request_api = 'http://' + db_ip_ddress_arg + '/user/'
 	 
 	resp = requests.post(get_request_api,json={
@@ -45,7 +45,7 @@ def post_user_db(get_request_api_arg, db_ip_ddress_arg, **parameter_arg)
 ##########################################################
 #requesting API for updating request object to DB Service
 ##########################################################
-def put_request_db(get_request_api_arg, db_ip_ddress_arg, set_status_arg)
+def put_request_db(request_id_arg, db_ip_ddress_arg, set_status_arg)
          #generating GET API for getting Request from DB Service
         get_request_api = 'http://' + db_ip_ddress_arg + '/request/' + request_id_arg
         resp = requests.put(get_request_api, json={'status': set_status_arg})
@@ -80,7 +80,7 @@ else:
 	resp_req = json.load(ret_req_get)
 	resp_req_params = resp_req['parameter'].split(" ")
 	
-	#Updating user on server - updating request tuple status
+	#Adding user on server - updating request tuple status
 	ret_user_post = post_user_db(request_id, db_ip_ddress, name = resp_req_params[0], password = resp_req_params[1])
 	if ret_user_post is -1:
 		#user not created properly - updating request tuple status
